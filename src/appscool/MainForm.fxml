@@ -11,11 +11,10 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="515.0" prefWidth="300.0">
          <children>
-            <Label text="URL сайта:" />
-            <TextField />
             <Label text="Фамилия:" />
             <TextField fx:id="tfFamilia" prefHeight="25.0" prefWidth="169.0" />
-            <Button mnemonicParsing="false" onAction="#processClearFam" prefHeight="6.0" prefWidth="24.0" text="Х" />
+            <Label text="URL сайта:" />
+            <TextField />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
