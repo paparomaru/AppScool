@@ -25,27 +25,21 @@ public class Controller {
     @FXML
     private void processSetSave(ActionEvent event) {
 
-        String strLastName = "";
-
         fPath = new File("").getAbsolutePath();
         fPath = fPath+"\\appscool.ini";
-
 
         try {
             //Создаем объект свойст
             Properties properties = new Properties();
             File file = new File(fPath);
-            //Загружаем свойства из файла
             properties.load(new FileInputStream(file));
-            //Получаем в переменную значение конкретного свойства
-            String host = properties.getProperty("lastname");
+//            strLastName = properties.getProperty("lastname");
 
-            strLastName = tfFamilia.getText();
+            String strLastName = tfFamilia.getText();
 
-            //Устанавливаем значение свойста
             properties.setProperty("lastname", strLastName);
-            //Сохраняем свойства в файл.
             properties.store(new FileOutputStream(file), null);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,18 +48,10 @@ public class Controller {
     }
 
     @FXML
-    private void processExit(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
     private void proccessLoad(ActionEvent event) {
-
-        String strLastName = "";
 
         fPath = new File("").getAbsolutePath();
         fPath = fPath+"\\appscool.ini";
-
 
         try {
             //Создаем объект свойст
@@ -74,7 +60,7 @@ public class Controller {
             //Загружаем свойства из файла
             properties.load(new FileInputStream(file));
             //Получаем в переменную значение конкретного свойства
-            strLastName = properties.getProperty("lastname");
+            String strLastName = properties.getProperty("lastname");
             tfFamilia.setText(strLastName);
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,4 +68,10 @@ public class Controller {
 
         JOptionPane.showMessageDialog(null, "Загрузили!");
     }
+
+    @FXML
+    private void processExit(ActionEvent event) {
+        System.exit(0);
+    }
+
 }
