@@ -2,20 +2,21 @@ package appscool;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Properties;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable{
 
-    private String fPath = "";
+    private OptionsCommander optionsCommander = new OptionsCommander();
 
     @FXML
     public TextField tfFamilia;
+
+    @FXML
+    public Button btnExit;
 
     @FXML
     private void processClearFam(ActionEvent event) {
@@ -24,54 +25,26 @@ public class Controller {
 
     @FXML
     private void processSetSave(ActionEvent event) {
-
-        fPath = new File("").getAbsolutePath();
-        fPath = fPath+"\\appscool.ini";
-
-        try {
-            //Создаем объект свойст
-            Properties properties = new Properties();
-            File file = new File(fPath);
-            properties.load(new FileInputStream(file));
-//            strLastName = properties.getProperty("lastname");
-
-            String strLastName = tfFamilia.getText();
-
-            properties.setProperty("lastname", strLastName);
-            properties.store(new FileOutputStream(file), null);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JOptionPane.showMessageDialog(null, "Сохранили!");
+        String strLastName = tfFamilia.getText();
+        optionsCommander.setParametr("lastname", strLastName);
     }
 
     @FXML
-    private void proccessLoad(ActionEvent event) {
+    public void proccessLoad(ActionEvent event) {
 
-        fPath = new File("").getAbsolutePath();
-        fPath = fPath+"\\appscool.ini";
-
-        try {
-            //Создаем объект свойст
-            Properties properties = new Properties();
-            File file = new File(fPath);
-            //Загружаем свойства из файла
-            properties.load(new FileInputStream(file));
-            //Получаем в переменную значение конкретного свойства
-            String strLastName = properties.getProperty("lastname");
-            tfFamilia.setText(strLastName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JOptionPane.showMessageDialog(null, "Загрузили!");
+        String strLastName = optionsCommander.getParametr("lastname");
+        tfFamilia.setText(strLastName);
     }
 
     @FXML
     private void processExit(ActionEvent event) {
-        System.exit(0);
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        String strLastName = optionsCommander.getParametr("lastname");
+        tfFamilia.setText(strLastName);
+    }
 }
