@@ -13,38 +13,41 @@ public class Controller implements Initializable{
     private OptionsCommander optionsCommander = new OptionsCommander();
 
     @FXML
-    public TextField tfFamilia;
+    public TextField tfURLSite;
 
     @FXML
     public Button btnExit;
 
     @FXML
-    private void processClearFam(ActionEvent event) {
-        tfFamilia.setText("");
+    private void processClearURLSite(ActionEvent event) {
+        tfURLSite.setText("");
     }
 
     @FXML
     private void processSetSave(ActionEvent event) {
-        String strLastName = tfFamilia.getText();
-        optionsCommander.setParametr("lastname", strLastName);
+        String strLastName = tfURLSite.getText();
+        optionsCommander.setParametr("URLSite", strLastName);
     }
 
     @FXML
     public void proccessLoad(ActionEvent event) {
 
-        String strLastName = optionsCommander.getParametr("lastname");
-        tfFamilia.setText(strLastName);
+        String strLastName = optionsCommander.getParametr("URLSite");
+        tfURLSite.setText(strLastName);
     }
 
     @FXML
     private void processExit(ActionEvent event) {
+        String strURLSite = tfURLSite.getText();
+        optionsCommander.setParametr("URLSite", strURLSite);
+
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String strLastName = optionsCommander.getParametr("lastname");
-        tfFamilia.setText(strLastName);
+        String strURLSite = optionsCommander.getParametr("URLSite");
+        tfURLSite.setText(strURLSite);
     }
 }

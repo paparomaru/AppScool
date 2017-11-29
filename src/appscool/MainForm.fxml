@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="appscool.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appscool.Controller">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -43,8 +43,8 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" text="..." GridPane.columnIndex="2">
+                  <TextField fx:id="tfURLSite" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#processClearURLSite" text="..." GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" />
                      </GridPane.margin>
@@ -57,7 +57,7 @@
          <children>
             <ButtonBar layoutX="7.0" layoutY="8.0" prefHeight="40.0" prefWidth="284.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Выход" />
+                <Button fx:id="btnExit" mnemonicParsing="false" onAction="#processExit" text="Выход" />
               </buttons>
             </ButtonBar>
          </children>
