@@ -5,6 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,11 +21,33 @@ public class Controller implements Initializable{
     public TextField tfURLSite;
 
     @FXML
+    public TextField tfTelephon;
+
+    @FXML
+    public PasswordField tfPassword;
+
+    @FXML
     public Button btnExit;
+
+    public void initialize(URL location, ResourceBundle resources) {
+        tfURLSite.setText(optionsCommander.getParametr("URLSite"));
+        tfTelephon.setText(optionsCommander.getParametr("Telephone"));
+        tfPassword.setText(optionsCommander.getParametr("Password"));
+    }
 
     @FXML
     private void processClearURLSite(ActionEvent event) {
         tfURLSite.setText("");
+    }
+
+    @FXML
+    private void processClearTelephone(ActionEvent event) {
+        tfTelephon.setText("");
+    }
+
+    @FXML
+    private void processClearPassword(ActionEvent event) {
+        tfPassword.setText("");
     }
 
     @FXML
@@ -36,10 +63,14 @@ public class Controller implements Initializable{
         tfURLSite.setText(strLastName);
     }
 
-    @FXML //ghtdtl
+    @FXML
     private void processExit(ActionEvent event) {
         String strURLSite = tfURLSite.getText();
         optionsCommander.setParametr("URLSite", strURLSite);
+        String strTelephon = tfTelephon.getText();
+        optionsCommander.setParametr("Telephone", strTelephon);
+        String strPassword = tfPassword.getText();
+        optionsCommander.setParametr("Password", strPassword);
 
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
@@ -47,17 +78,33 @@ public class Controller implements Initializable{
 
     @FXML
     private void processNaSite(ActionEvent event) {
-//        String NameChromeDriver = "webdriver.chrome.driver";
-//        String PathDriver = "c:/Develop/chromedriver/chromedriver.exe";
-//        String SiteURL = "https://etest.asurso.ru";
-//        System.setProperty(NameChromeDriver, PathDriver);
-//        WebDriver webDriver = new ChromeDriver();
-//        webDriver.get(SiteURL);
-    }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        String strURLSite = optionsCommander.getParametr("URLSite");
-        tfURLSite.setText(strURLSite);
+        String NameChromeDriver = "webdriver.chrome.driver";
+        String PathDriver = "chromedriver.exe";
+        System.setProperty(NameChromeDriver, PathDriver);
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get(tfURLSite.getText());
+        webDriver.manage().window().maximize();
+        webDriver.findElement(By.className("btn-base")).click();
+
+//        try { // паУза 2 секунды
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        webDriver.findElement(By.id("mobileOrEmail")).sendKeys(tfTelephon.getText());
+        webDriver.findElement(By.id("password")).sendKeys(tfPassword.getText());
+        webDriver.findElement(By.className("ui-button")).click();
+
+        try { // паУза 2 секунды
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Select select = new Select(webDriver.findElement(By.className("form-control")));
+        select.selectByVisibleText("г. о. Самара");
+        webDriver.findElement(By.className("btn")).click();
     }
 }
