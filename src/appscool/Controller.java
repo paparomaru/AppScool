@@ -45,6 +45,16 @@ public class Controller implements Initializable{
         stage.close();
     }
 
+    @FXML
+    private void processNaSite(ActionEvent event) {
+//        String NameChromeDriver = "webdriver.chrome.driver";
+//        String PathDriver = "c:/Develop/chromedriver/chromedriver.exe";
+//        String SiteURL = "https://etest.asurso.ru";
+//        System.setProperty(NameChromeDriver, PathDriver);
+//        WebDriver webDriver = new ChromeDriver();
+//        webDriver.get(SiteURL);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String strURLSite = optionsCommander.getParametr("URLSite");
