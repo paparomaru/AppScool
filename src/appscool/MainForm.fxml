@@ -80,7 +80,8 @@
          <children>
             <ButtonBar layoutX="7.0" layoutY="8.0" prefHeight="40.0" prefWidth="284.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#processNaSite" text="На сайт" />
+                  <Button fx:id="btn1" mnemonicParsing="false" onAction="#processNaSite" text="1" />
+                  <Button fx:id="btn2" mnemonicParsing="false" onAction="#processNaSite" text="2" />
                 <Button fx:id="btnExit" mnemonicParsing="false" onAction="#processExit" text="Выход" />
               </buttons>
             </ButtonBar>
