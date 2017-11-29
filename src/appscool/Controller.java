@@ -36,7 +36,7 @@ public class Controller implements Initializable{
         tfURLSite.setText(strLastName);
     }
 
-    @FXML
+    @FXML //ghtdtl
     private void processExit(ActionEvent event) {
         String strURLSite = tfURLSite.getText();
         optionsCommander.setParametr("URLSite", strURLSite);
