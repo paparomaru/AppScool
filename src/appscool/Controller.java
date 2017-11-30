@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import java.net.URL;
@@ -38,6 +37,8 @@ public class Controller implements Initializable{
         tfURLSite.setText(optionsCommander.getParametr("URLSite"));
         tfTelephon.setText(optionsCommander.getParametr("Telephone"));
         tfPassword.setText(optionsCommander.getParametr("Password"));
+        System.setProperty(MyData.NameChromeDriver, MyData.PathDriver);
+        MyData.webDriver = new ChromeDriver();
     }
 
     @FXML
@@ -85,26 +86,23 @@ public class Controller implements Initializable{
     private void processNaSite(ActionEvent event) {
 
         if (event.getSource() == btn1) {
-            String NameChromeDriver = "webdriver.chrome.driver";
-            String PathDriver = "chromedriver.exe";
-            System.setProperty(NameChromeDriver, PathDriver);
-            WebDriver webDriver = new ChromeDriver();
-            webDriver.get(tfURLSite.getText());
-            webDriver.manage().window().maximize();
-            webDriver.findElement(By.className("btn-base")).click();
+            MyData.webDriver.get(tfURLSite.getText());
+            MyData.webDriver.manage().window().maximize();
+            MyData.webDriver.findElement(By.className("btn-base")).click();
 
-            webDriver.findElement(By.id("mobileOrEmail")).sendKeys(tfTelephon.getText());
-            webDriver.findElement(By.id("password")).sendKeys(tfPassword.getText());
-            webDriver.findElement(By.className("ui-button")).click();
+            MyData.webDriver.findElement(By.id("mobileOrEmail")).sendKeys(tfTelephon.getText());
+            MyData.webDriver.findElement(By.id("password")).sendKeys(tfPassword.getText());
+            MyData.webDriver.findElement(By.className("ui-button")).click();
         } else if (event.getSource() == btn2) {
-            Select select = new Select(webDriver.findElement(By.className("form-control")));
+            Select select = new Select(MyData.webDriver.findElement(By.className("form-control")));
             select.selectByVisibleText("г. о. Самара");
-            webDriver.findElement(By.className("btn")).click();
+            MyData.webDriver.findElement(By.className("btn")).click();
         }
-        // /        try { // паУза 2 секунды
+    }
+}
+
+// /        try { // паУза 2 секунды
 //            Thread.sleep(2000);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-    }
-}
