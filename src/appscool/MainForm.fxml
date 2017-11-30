@@ -55,7 +55,7 @@
                                        </GridPane.margin>
                                     </Label>
                                     <TextField fx:id="tfURLSite" GridPane.columnIndex="1" />
-                                    <Button mnemonicParsing="false" onAction="#processClearURLSite" text="..." GridPane.columnIndex="2">
+                                    <Button fx:id="btn11" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
@@ -69,7 +69,7 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="tfTelephon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" onAction="#processClearTelephone" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Button fx:id="btn12" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
@@ -83,7 +83,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button mnemonicParsing="false" onAction="#processClearPassword" text="..." GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Button fx:id="btn13" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
@@ -100,8 +100,8 @@
                            <children>
                               <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="274.0" prefWidth="298.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="79.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="171.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="93.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="166.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="88.0" minWidth="10.0" prefWidth="30.0" />
                                  </columnConstraints>
                                  <rowConstraints>
@@ -125,8 +125,8 @@
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextField fx:id="tfFamilijRod" GridPane.columnIndex="1" />
-                                    <Button fx:id="btn21" mnemonicParsing="false" text="..." GridPane.columnIndex="2">
+                                    <TextField fx:id="tfFamilijRod" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" />
+                                    <Button fx:id="btn21" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
@@ -140,7 +140,7 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="tfImjRod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button fx:id="btn22" mnemonicParsing="false" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Button fx:id="btn22" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
@@ -200,30 +200,30 @@
                                        </font>
                                     </Label>
                                     <ChoiceBox prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <Button fx:id="btn24" mnemonicParsing="false" text="..." GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                    <TextField fx:id="tfSerij" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="tfNomer" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="tfKemVydan" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Button fx:id="btn24" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="4">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="btn25" mnemonicParsing="false" text="..." GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <Button fx:id="btn25" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="btn26" mnemonicParsing="false" text="..." GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                    <Button fx:id="btn26" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="6">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <Button fx:id="btn27" mnemonicParsing="false" text="..." GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                    <Button fx:id="btn27" mnemonicParsing="false" onAction="#processClearFields" text="..." GridPane.columnIndex="2" GridPane.rowIndex="7">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Button>
-                                    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <DatePicker fx:id="dpDataVyd" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                  </children>
                               </GridPane>
                            </children>

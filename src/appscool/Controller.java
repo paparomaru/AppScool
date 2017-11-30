@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable{
@@ -25,6 +27,27 @@ public class Controller implements Initializable{
     public PasswordField tfPassword;
 
     @FXML
+    public TextField tfFamilijRod;
+
+    @FXML
+    public TextField tfImjRod;
+
+    @FXML
+    public TextField tfOtchestvoRod;
+
+    @FXML
+    public TextField tfSerij;
+
+    @FXML
+    public TextField tfNomer;
+
+    @FXML
+    public TextField tfKemVydan;
+
+    @FXML
+    public DatePicker dpDataVyd;
+
+    @FXML
     public Button btnExit;
 
     @FXML
@@ -33,53 +56,117 @@ public class Controller implements Initializable{
     @FXML
     public Button btn2;
 
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public Button btn11;
+
+    @FXML
+    public Button btn12;
+
+    @FXML
+    public Button btn13;
+
+    @FXML
+    public Button btn21;
+
+    @FXML
+    public Button btn22;
+
+    @FXML
+    public Button btn23;
+
+    @FXML
+    public Button btn24;
+
+    @FXML
+    public Button btn25;
+
+    @FXML
+    public Button btn26;
+
+    @FXML
+    public Button btn27;
+
+    private void SaveParams(){
+        optionsCommander.setParametr("URLSite", tfURLSite.getText());
+        optionsCommander.setParametr("Telephone", tfTelephon.getText());
+        optionsCommander.setParametr("Password", tfPassword.getText());
+        optionsCommander.setParametr("FamilijRod", tfFamilijRod.getText());
+        optionsCommander.setParametr("ImjRod", tfImjRod.getText());
+        optionsCommander.setParametr("OtchestvoRod", tfOtchestvoRod.getText());
+        optionsCommander.setParametr("Serij", tfSerij.getText());
+        optionsCommander.setParametr("Nomer", tfNomer.getText());
+        optionsCommander.setParametr("KemVydan", tfKemVydan.getText());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        String strDataVyd = dpDataVyd.getValue().format(formatter);
+        optionsCommander.setParametr("DataVyd", strDataVyd);
+    }
+
+    private void LoadParams(){
         tfURLSite.setText(optionsCommander.getParametr("URLSite"));
         tfTelephon.setText(optionsCommander.getParametr("Telephone"));
         tfPassword.setText(optionsCommander.getParametr("Password"));
+        tfFamilijRod.setText(optionsCommander.getParametr("FamilijRod"));
+        tfImjRod.setText(optionsCommander.getParametr("ImjRod"));
+        tfOtchestvoRod.setText(optionsCommander.getParametr("OtchestvoRod"));
+        tfSerij.setText(optionsCommander.getParametr("Serij"));
+        tfNomer.setText(optionsCommander.getParametr("Nomer"));
+        tfKemVydan.setText(optionsCommander.getParametr("KemVydan"));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        String strDataVyd = optionsCommander.getParametr("DataVyd");
+        dpDataVyd.setValue(LocalDate.parse(strDataVyd, formatter));
+    }
+
+    public void initialize(URL location, ResourceBundle resources) {
+        LoadParams();
         System.setProperty(MyData.NameChromeDriver, MyData.PathDriver);
         MyData.webDriver = new ChromeDriver();
     }
 
     @FXML
-    private void processClearURLSite(ActionEvent event) {
-        tfURLSite.setText("");
-    }
+    private void processClearFields(ActionEvent event){
 
-    @FXML
-    private void processClearTelephone(ActionEvent event) {
-        tfTelephon.setText("");
-    }
-
-    @FXML
-    private void processClearPassword(ActionEvent event) {
-        tfPassword.setText("");
+        if (event.getSource() == btn21){
+            tfFamilijRod.setText("");
+        } else if (event.getSource() == btn22) {
+            tfImjRod.setText("");
+        } else if (event.getSource() == btn23){
+            tfOtchestvoRod.setText("");
+        } else if (event.getSource() == btn24){
+            tfSerij.setText("");
+        } else if (event.getSource() == btn25){
+            tfNomer.setText("");
+        } else if (event.getSource() == btn26){
+            tfKemVydan.setText("");
+        } else if (event.getSource() == btn27){
+//            tfDataVyd.setText("");
+        }else if (event.getSource() == btn11){
+            tfURLSite.setText("");
+        }else if (event.getSource() == btn12){
+            tfTelephon.setText("");
+        }else if (event.getSource() == btn13){
+            tfPassword.setText("");
+        }
     }
 
     @FXML
     private void processSetSave(ActionEvent event) {
-        String strLastName = tfURLSite.getText();
-        optionsCommander.setParametr("URLSite", strLastName);
+        SaveParams();
     }
 
     @FXML
     public void proccessLoad(ActionEvent event) {
-
-        String strLastName = optionsCommander.getParametr("URLSite");
-        tfURLSite.setText(strLastName);
+        LoadParams();
     }
 
     @FXML
     private void processExit(ActionEvent event) {
-        String strURLSite = tfURLSite.getText();
-        optionsCommander.setParametr("URLSite", strURLSite);
-        String strTelephon = tfTelephon.getText();
-        optionsCommander.setParametr("Telephone", strTelephon);
-        String strPassword = tfPassword.getText();
-        optionsCommander.setParametr("Password", strPassword);
-
+        SaveParams();
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
+        MyData.webDriver.close();
+        MyData.webDriver.quit();
     }
 
     @FXML
@@ -99,6 +186,8 @@ public class Controller implements Initializable{
             MyData.webDriver.findElement(By.className("btn")).click();
         }
     }
+
+
 }
 
 // /        try { // паУза 2 секунды

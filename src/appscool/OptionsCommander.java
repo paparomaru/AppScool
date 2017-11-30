@@ -29,7 +29,7 @@ class OptionsCommander {
             e.printStackTrace();
         }
 
-        System.out.println("Параметр: "+strParam+" был загружен из файла!");
+        System.out.println("Параметр: "+strParam+" был загружен из файла!"+strRez);
 
         return strRez;
     }
