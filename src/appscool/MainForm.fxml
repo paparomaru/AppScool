@@ -199,7 +199,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <ChoiceBox fx:id="chbTipRod" prefHeight="25.0" prefWidth="171.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField fx:id="tfSerij" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <TextField fx:id="tfNomer" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <TextField fx:id="tfKemVydan" GridPane.columnIndex="1" GridPane.rowIndex="6" />

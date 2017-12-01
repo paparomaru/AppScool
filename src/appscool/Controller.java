@@ -48,6 +48,9 @@ public class Controller implements Initializable{
     public DatePicker dpDataVyd;
 
     @FXML
+    public ChoiceBox chbTipRod;
+
+    @FXML
     public Button btnExit;
 
     @FXML
@@ -96,6 +99,7 @@ public class Controller implements Initializable{
         optionsCommander.setParametr("Serij", tfSerij.getText());
         optionsCommander.setParametr("Nomer", tfNomer.getText());
         optionsCommander.setParametr("KemVydan", tfKemVydan.getText());
+        optionsCommander.setParametr("TipRod", chbTipRod.getValue().toString());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         String strDataVyd = dpDataVyd.getValue().format(formatter);
@@ -113,12 +117,16 @@ public class Controller implements Initializable{
         tfNomer.setText(optionsCommander.getParametr("Nomer"));
         tfKemVydan.setText(optionsCommander.getParametr("KemVydan"));
 
+        chbTipRod.getSelectionModel().select(optionsCommander.getParametr("TipRod"));
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         String strDataVyd = optionsCommander.getParametr("DataVyd");
         dpDataVyd.setValue(LocalDate.parse(strDataVyd, formatter));
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        chbTipRod.getItems().addAll("Отец","Мать","Опекун","Иное");
+        chbTipRod.getSelectionModel().select("Отец");
         LoadParams();
         System.setProperty(MyData.NameChromeDriver, MyData.PathDriver);
         MyData.webDriver = new ChromeDriver();
